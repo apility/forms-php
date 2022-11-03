@@ -1,0 +1,37 @@
+{
+    "name": "apility/forms",
+    "type": "library",
+    "description": "A simple form builder",
+    "license": "MIT",
+    "keywords": [
+        "forms",
+        "form",
+        "builder",
+        "form builder",
+        "laravel",
+        "netflex"
+    ],
+    "authors": [
+        {
+            "name": "Thomas Alrek",
+            "email": "thomas@apility.no"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Apility\\Forms\\": "src/Apility/Forms"
+        }
+    },
+    "require": {
+        "illuminate/support": "^8.0|^9.0",
+        "illuminate/view": "^8.0",
+        "spatie/once": "^2.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Apility\\Forms\\Providers\\FormsServiceProvider"
+            ]
+        }
+    }
+}
