@@ -94,6 +94,13 @@ trait BuildsFormFields
         return $this;
     }
 
+    public function withExplanation(string $explanation)
+    {
+        $this->attributes['options']['explanation'] = $explanation;
+
+        return $this;
+    }
+
     /**
      * @param string|int|bool|DateTimeInterface|null $value
      * @return static
