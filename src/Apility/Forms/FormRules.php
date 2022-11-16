@@ -1,6 +1,6 @@
 <?php
 
-namespace Apility\Ticketing;
+namespace Apility\Forms;
 
 use Apility\Forms\Contracts\Form;
 use Apility\Forms\Contracts\FormField;
