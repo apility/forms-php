@@ -9,7 +9,7 @@
     type="{{ $type }}"
     @class([
         'form-control',
-        'is-invalid' => $errors->has('{{ $name }}')
+        'is-invalid' => $errors->has($field->getFormFieldName())
     ])
     @include(config('forms.prefix', 'forms') . '::partials.attributes', [
         'attributes' => array_filter([
