@@ -7,6 +7,7 @@
 
 <input
     type="{{ $type }}"
+    name="{{ $field->getFormFieldName() }}"
     @class([
         'form-control',
         'is-invalid' => $errors->has($field->getFormFieldName())
