@@ -42,9 +42,19 @@ class FormFieldRules
                     $rules[] = 'accepted';
                 }
                 break;
+            case 'file':
+                $rules[] = 'file';
+                break;
+            case 'image':
+                $rules[] = 'image';
+                break;
             default:
                 $rules[] = 'string';
                 break;
+        }
+
+        if (isset($options['mimeTypes'])) {
+            $rules[] = 'mimes:' . $options['mimeTypes'];
         }
 
         if (isset($options['min'])) {
