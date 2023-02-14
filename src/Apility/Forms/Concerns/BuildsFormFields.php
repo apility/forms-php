@@ -36,8 +36,12 @@ trait BuildsFormFields
 
     public function accept(...$mimeTypes)
     {
-        $mimeTypes = collect($mimeTypes)->flatten()->all();
-        return $this->withOption('mimeTypes', implode(',', $mimeTypes));
+        if (in_array($this->getFormFieldType(), ['file', 'image'])) {
+            $mimeTypes = collect($mimeTypes)->flatten()->all();
+            return $this->withOption('mimeTypes', implode(',', $mimeTypes));
+        }
+
+        throw new InvalidArgumentException('Field type [' . $this->getFormFieldType() . '] does not support the [accept] attribute.');
     }
 
     public static function image(string $name, $label = null, $mimetypes = ['image/jpeg', 'image/png', 'image/gif'])
@@ -69,7 +73,7 @@ trait BuildsFormFields
      */
     public function withType(string $type)
     {
-        if (in_array($type, ['checkbox', 'date', 'email', 'hidden', 'label', 'number', 'password', 'phone', 'select', 'text', 'textarea',])) {
+        if (in_array($type, ['checkbox', 'date', 'email', 'hidden', 'label', 'number', 'password', 'phone', 'select', 'text', 'textarea', 'file', 'image'])) {
             $this->attributes['type'] = $type;
 
             return $this;
