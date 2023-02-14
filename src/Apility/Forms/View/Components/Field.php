@@ -2,6 +2,7 @@
 
 namespace Apility\Forms\View\Components;
 
+use Apility\Forms\Concerns\Attributes\Explanation;
 use Illuminate\View\Component;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
@@ -11,6 +12,8 @@ use Apility\Forms\Contracts\FormField as FormFieldContract;
 
 abstract class Field extends Component
 {
+    use Explanation;
+
     public FormFieldContract $field;
 
     public function __construct(FormFieldContract $field)

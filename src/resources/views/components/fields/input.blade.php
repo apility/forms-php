@@ -26,6 +26,19 @@
             'step' => $step ?? null,
             'title' => $title ?? null,
             'value' => $value ?? null,
+            'explanation' => $explanationId ?? null
         ])
     ])
 >
+    @if($explanation)
+        aria-describedby="{{ implode('-', array_filter([$id ?? null, 'explanation'])) }}"
+    @endif
+>
+@if($explanation ?? null)
+    <div
+        id="{{ $explanationId ?? null }}"
+        class="form-text"
+    >
+        {{ $explanation }}
+    </div>
+@endif
