@@ -17,6 +17,40 @@ trait BuildsFormFields
         return new static;
     }
 
+    public static function file(string $name, $label = null, array $mimetypes = [])
+    {
+        $field = static::make()
+            ->withType('file')
+            ->withName($name);
+
+        if ($label) {
+            $field = $field->withLabel($label);
+        }
+
+        if ($mimetypes) {
+            return $field->accept($mimetypes);
+        }
+
+        return $field;
+    }
+
+    public function accept(...$mimeTypes)
+    {
+        $mimeTypes = collect($mimeTypes)->flatten()->all();
+        return $this->withOption('mimeTypes', implode(',', $mimeTypes));
+    }
+
+    public static function image(string $name, $label = null, $mimetypes = ['image/jpeg', 'image/png', 'image/gif'])
+    {
+        return static::file($name, $label, $mimetypes)
+            ->withType('image');
+    }
+
+    public function withCamera()
+    {
+        return $this->withOption('webcam', true);
+    }
+
     /**
      * @param string $name
      * @return static
