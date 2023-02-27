@@ -73,7 +73,7 @@ trait BuildsFormFields
      */
     public function withType(string $type)
     {
-        if (in_array($type, ['checkbox', 'date', 'email', 'hidden', 'label', 'number', 'password', 'phone', 'select', 'text', 'textarea', 'file', 'image'])) {
+        if (in_array($type, ['checkbox', 'date', 'email', 'hidden', 'label', 'number', 'password', 'phone', 'select', 'text', 'textarea', 'file', 'image', 'separator'])) {
             $this->attributes['type'] = $type;
 
             return $this;
@@ -314,6 +314,12 @@ trait BuildsFormFields
         return static::make()
             ->withType('label')
             ->withLabel($label);
+    }
+
+    public static function separator()
+    {
+        return static::make()
+            ->withType('separator');
     }
 
     /**
