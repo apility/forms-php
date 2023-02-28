@@ -5,6 +5,7 @@ namespace Apility\Forms\Concerns;
 use DateTimeInterface;
 use InvalidArgumentException;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
 
 trait BuildsFormFields
@@ -66,6 +67,14 @@ trait BuildsFormFields
         return $this;
     }
 
+    public static function copy(string $label)
+    {
+        return static::make()
+            ->withName((string) Str::uuid())
+            ->withType('copy')
+            ->withLabel($label);
+    }
+
     /**
      * @param string $type
      * @return static
@@ -73,7 +82,7 @@ trait BuildsFormFields
      */
     public function withType(string $type)
     {
-        if (in_array($type, ['checkbox', 'date', 'email', 'hidden', 'label', 'number', 'password', 'phone', 'select', 'text', 'textarea', 'file', 'image', 'separator'])) {
+        if (in_array($type, ['checkbox', 'date', 'email', 'hidden', 'label', 'number', 'password', 'phone', 'select', 'text', 'textarea', 'file', 'image', 'separator', 'copy'])) {
             $this->attributes['type'] = $type;
 
             return $this;
@@ -312,6 +321,7 @@ trait BuildsFormFields
     public static function label($label)
     {
         return static::make()
+            ->withName((string) Str::uuid())
             ->withType('label')
             ->withLabel($label);
     }
@@ -319,6 +329,7 @@ trait BuildsFormFields
     public static function separator()
     {
         return static::make()
+            ->withName((string) Str::uuid())
             ->withType('separator');
     }
 
