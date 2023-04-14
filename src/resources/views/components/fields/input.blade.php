@@ -29,7 +29,6 @@
             'explanation' => $explanationId ?? null
         ])
     ])
->
     @if($explanation)
         aria-describedby="{{ implode('-', array_filter([$id ?? null, 'explanation'])) }}"
     @endif
